@@ -1,0 +1,35 @@
+{
+    "songs": [
+        {
+            "id": "song0",
+            "src": "music/despacito.mp3",
+            "name": "Despacito"
+        },
+        {
+            "id": "song1",
+            "src": "music/cute.mp3",
+            "name": "Cute"
+
+        },
+        {
+            "id": "song2",
+            "src": "music/Sorry.mp3",
+            "name": "Sorry"
+
+        },
+        
+        {
+            "id": "song3",
+            "src": "music/LoveStory.mp3",
+            "name": "Love Story"
+
+        },
+        {
+            "id": "song4",
+            "src": "music/Loving-You.mp3",
+            "name": "Loving You"
+
+        }
+
+    ]
+}
