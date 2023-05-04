@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+          margin-left: 25%;
+          background: #333334;
+          color: white;
+          text-align: center;
+          font-family: sans-serif;
+          margin: 0;
+        }
+    
+        .fa {
+          color: white;
+          font-size: 150px;
+          cursor: pointer;
+        }
+    
+        .fa-play-circle {}
+    
+        .hide {
+          display: none;
+        }
+    
+        .show {
+          display: block;
+        }
+    
+        ul {
+  width: 40rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 110px;
+  /* overflow-y: scroll; */
+  position: relative;
+  left: 16rem;
+}
+
+ul li {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+    
+        header {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #0f0e11;
+          color: white;
+          height: 200px;
+        }
+    
+        .logo-container {
+          margin-right: 20px;
+        }
+    
+        .logo2-container {
+          margin-left: 20px;
+        }
+    
+        .title-container {
+          text-align: center;
+          flex: 1;
+          padding-left: 20px;
+        }
+    
+        h1 {
+  font-family: "Georgia", serif;
+  font-size: 60px;
+  color: #fcf4f4;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 1px #ccc;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+    
+        .music-controls {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+    
+        .music-controls ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+    
+        .music-controls li {
+          margin: 0 10px;
+          padding: 10px;
+          border-radius: 5px;
+          background-color: #001930;
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          font-size: 16px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    
+        .music-controls li:hover {
+          background-color: #444;
+        }
+    
+        .music-controls .fa {
+          font-size: 50px;
+          cursor: pointer;
+        }
+    
+        .music-controls .fa-play-circle {
+          margin-right: 20px;
+        }
+    
+        .music-controls .hide {
+          display: none;
+        }
+    
+        .music-controls .show {
+          display: block;
+        }
+    
+        #load {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        position: relative;
+        top: -80px;
+
+        }
+
+#load:hover {
+  background-color: #3e8e41; /* Dark green */
+}
+
+.controls {
+  background-color: #333;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  position: relative;
+  top: -30px;
+}
+
+.fa {
+  color: #fff;
+  font-size: 20px;
+}
+#songList {
+  background-color: #f0f0f0;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #ccc;
+  margin-top: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: relative;
+  top: -120px;
+  width: 80%;
+  display: block;
+}
+
+#songList li {
+  list-style: none;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+  position: relative;
+  left: 20px;
+}
+#songList ul li {
+  display: block;
+  position: relative;
+  left: 20px;
+}
+
+#songList li:hover {
+  background-color: #ddd;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #333;
+  z-index: 999;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000;
+}
+
+.controls i {
+  font-size: 30px;
+  margin: 0 20px;
+}
+
+#play.hide {
+  display: none;
+}
+
+#pause.hide {
+  display: none;
+}
+
+div#roomNameContainer {
+  font-family: "Georgia", serif;
+  font-size: 30px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 1px 1px 1px #ccc;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  background-color: #f6f4f4;
+  border-radius: 10px;
+}
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sockets</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-************" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <!-- <h1>Sockets Music Player</h1> -->
+    <header>
+        <div class="logo-container">
+            <img src="imgs/music2.jpg" alt="Logo" style="width: 300px; height: 200px;">
+        </div>
+        <div class="title-container">
+            <h1>Tune Together</h1>
+            <div id="roomNameContainer">
+                <span style="margin-right: 10px;">Room Name:</span>
+                <span id="roomName"></span>
+              </div>
+        </div>
+        <div class="logo2-container">
+            <img src="imgs/music3.png" alt="Logo" style="width: 300px; height: 200px;">
+        </div>
+    </header>
+
+    <!-- <div id="mysongs">
+        <h3> My SONGS <i class="fa fa-heart"></i></h3>
+    </div> -->
+    <div class="music-controls">
+        <div id="songList">
+          <ul>
+            <li id="song0">
+              <img src="imgs/calmdown.jpg" alt="A cat" style="width: 200px; height: 150px;">
+              Baby Calm Down</li>
+            <li id="song1">
+              <img src="imgs/asitwas.jpg" alt="A cat" style="width: 200px; height: 150px;">
+              As It Was</li>
+            <li id="song2">
+              <img src="imgs/Sorry.png" alt="A cat" style="width: 200px; height: 150px;">
+              Sorry</li>
+            <li id="song3">
+              <img src="imgs/Lovestory.png" alt="A cat" style="width: 200px; height: 150px;">
+              Love Story</li>
+            <li id="song4">
+              <img src="imgs/dandelions.jpg" alt="A cat" style="width: 200px; height: 150px;">
+              Dandelions</li>
+        </ul>
+        </div>
+        <button id="load">Load Music</button>
+        <footer>
+            <div class="controls">
+              <i id="prev" class="fa fa-step-backward" aria-hidden="true"></i>
+              <i id="play" class="fa fa-play-circle show" aria-hidden="true"></i>
+              <i id="pause" class="fa fa-pause-circle hide" aria-hidden="true"></i>
+              <i id="next" class="fa fa-step-forward" aria-hidden="true"></i>
+            </div>
+          </footer>
+      </div>
+
+    <audio preload="true" id="myaudio">
+        <source src="music/CalmDown.mp3" class="audio-source">
+    </audio>
+    <script src="jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
